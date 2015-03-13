@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13 mars 2015 14:48:20 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="Matiere" table="matiere" schema="public">
+        <id name="id" type="int">
+            <column name="id" />
+            <generator class="assigned" />
+        </id>
+        <property name="nom" type="string">
+            <column name="nom" />
+        </property>
+        <set name="etudiantMatieres" table="etudiant_matiere" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="matiere_id" not-null="true" />
+            </key>
+            <one-to-many class="EtudiantMatiere" />
+        </set>
+        <set name="matiereEtudiants" table="matiere_etudiant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="matiere_id" not-null="true" />
+            </key>
+            <one-to-many class="MatiereEtudiant" />
+        </set>
+    </class>
+</hibernate-mapping>

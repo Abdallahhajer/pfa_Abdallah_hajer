@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 13 mars 2015 14:48:20 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="MatiereEtudiant" table="matiere_etudiant" schema="public">
+        <composite-id name="id" class="MatiereEtudiantId">
+            <key-property name="matiereId" type="int">
+                <column name="matiere_id" />
+            </key-property>
+            <key-property name="etudiantId" type="int">
+                <column name="etudiant_id" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="etudiant" class="Etudiant" update="false" insert="false" fetch="select">
+            <column name="etudiant_id" not-null="true" unique="true" />
+        </many-to-one>
+        <many-to-one name="matiere" class="Matiere" update="false" insert="false" fetch="select">
+            <column name="matiere_id" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>
